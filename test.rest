@@ -1,0 +1,31 @@
+# Login
+POST http://localhost:8080/api/v1/auth/authenticate
+Content-Type: application/json
+
+{
+    "email":"m@m.com",
+    "password": 1234
+}
+
+###
+
+# Register
+POST http://localhost:8080/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "firstName": "hai",
+  "lastName": "hoang",
+  "email": "hai@gmail.com",
+  "password": "1234",
+  "retypedPassword": "1234",
+  "phone": "7142622813"
+}
+
+###
+
+# User Info
+GET http://localhost:8080/api/v1/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjQzLCJzdWIiOiJ3aWxseXlhbzIyMzMzMzExMTFAb3V0bG9vay5jb20iLCJpYXQiOjE2OTE5NjE2NDksImV4cCI6MTY5MTk2MzA4OX0.0HI7gY7JJ8F8ppYVrDFY8zomw633hx1eAL71W_pWqrU
+
+###
