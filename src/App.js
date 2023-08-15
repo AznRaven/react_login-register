@@ -7,14 +7,13 @@ function App() {
   return (
     <main className="App">
       {/* <Register /> */}
-      <Login/>
       <Routes> 
         <Route 
           path="/register"
           element={<Register/>}
         />
         <Route
-          path="/login"
+          path="/"
           element={<Login />}
         />
         {/* <Route path='/price/:symbol' element={<Price/>} /> */}

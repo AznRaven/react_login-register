@@ -338,7 +338,7 @@ const Register = () => {
             <br />
             <span className="line">
               {/*put router link here*/}
-              <Link to="/login">
+              <Link to="/">
                 <div>Login</div>
               </Link>
               {/* <a href="#">Sign In</a> */}
