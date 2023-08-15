@@ -63,6 +63,7 @@ const Login = () => {
   return (
     <section>
       <h1>Login</h1>
+      <hr /><br />
       <form onSubmit={handleSubmit}>
         {/* Email */}
         <InputsValid

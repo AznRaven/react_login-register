@@ -158,6 +158,7 @@ const Register = () => {
             {errMsg}
           </p>
           <h1>Register</h1>
+          <hr /><br />
           <form onSubmit={handleSubmit}>
             <div className="flex">
               {/* First Name */}
