@@ -43,10 +43,35 @@ const Login = () => {
         }
       );
       console.log("Authentication successful:", response?.data);
+      // const test = await axios.get(
+      //   "http://localhost:8080/api/v1/user", {
+      //   headers: {
+      //     //   "Content-Type": "application/json",
+      //     Authorization: `Bearer ${localStorage.getItem("token")}`,
+      //   },
+      // });
+      const myHeaders = new Headers();
+
+      myHeaders.append(
+        "Authorization",
+        `Bearer ${localStorage.getItem("token")}`
+      );
+
+      var requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+      };
+
+      fetch("http://localhost:8080/api/v1/user", requestOptions)
+        .then((response) => response.json()) // Parse the response as JSON
+        .then((data) => console.log(data)) // Log the parsed JSON data
+        .catch((error) => console.log("error", error));
 
       setSuccess(true);
-      setSuccessMsg("Login Successful")
-      setErrMsg(false)
+      setSuccessMsg("Login Successful");
+      setErrMsg(false);
+
       // Handle successful login (e.g., store tokens, redirect, etc.)
     } catch (err) {
       if (!err?.response) {
@@ -54,7 +79,7 @@ const Login = () => {
       } else if (err.response?.status === 401) {
         setErrMsg("Invalid credentials");
       } else {
-        setSuccessMsg(false)
+        setSuccessMsg(false);
         setErrMsg("Login Failed");
       }
     }
@@ -63,32 +88,31 @@ const Login = () => {
   return (
     <section>
       <h1>Login</h1>
-      <hr /><br />
+      <hr />
+      <br />
       <form onSubmit={handleSubmit}>
         {/* Email */}
         <InputsValid
-              id="email"
-              label="Email"
-              icon={faCheck}
-              type="text"
-              valid={validEmail}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              ariaInvalid={!validEmail}
-              ariaDescribedBy="emailnote"
-              onFocus={() => setEmailFocus(true)}
-              onBlur={() => setEmailFocus(false)}
-            />
-            <p
-              id="emailnote"
-              className={
-                emailFocus && !validEmail ? "instructions" : "offscreen"
-              }
-            >
-              <FontAwesomeIcon icon={faInfoCircle} />
-              Please enter a valid email.
-            </p>
+          id="email"
+          label="Email"
+          icon={faCheck}
+          type="text"
+          valid={validEmail}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          ariaInvalid={!validEmail}
+          ariaDescribedBy="emailnote"
+          onFocus={() => setEmailFocus(true)}
+          onBlur={() => setEmailFocus(false)}
+        />
+        <p
+          id="emailnote"
+          className={emailFocus && !validEmail ? "instructions" : "offscreen"}
+        >
+          <FontAwesomeIcon icon={faInfoCircle} />
+          Please enter a valid email.
+        </p>
         {/* Password */}
         <div>
           <label htmlFor="password">Password:</label>
@@ -107,16 +131,16 @@ const Login = () => {
         <button type="submit">Login</button>
       </form>
       <p>
-            Haven't registered?
-            <br />
-            <span className="line">
-              {/*put router link here*/}
-              <Link to="/register">
-                <div>Register</div>
-              </Link>
-              {/* <a href="#">Sign In</a> */}
-            </span>
-          </p>
+        Haven't registered?
+        <br />
+        <span className="line">
+          {/*put router link here*/}
+          <Link to="/register">
+            <div>Register</div>
+          </Link>
+          {/* <a href="#">Sign In</a> */}
+        </span>
+      </p>
     </section>
   );
 };
